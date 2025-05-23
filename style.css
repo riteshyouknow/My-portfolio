@@ -1,0 +1,955 @@
+@font-face {
+  font-family: moranga;
+  src: url(moranga.ttf);
+}
+
+@font-face {
+  font-family: gilroy;
+  src: url(Gilroy-Regular.ttf);
+}
+@font-face {
+  font-family: gilroy-bold;
+  src: url(Gilroy-Bold.otf);
+}
+@font-face {
+  font-family: gilroy-medium;
+  src: url(Gilroy-Medium.otf);
+}
+@font-face {
+  font-family: gilroy-semibold;
+  src: url(Gilroy-Semibold.otf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+  font-family: "Moranga";
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #111;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+nav {
+  height: 12vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.208vw 1.146vw;
+  position: fixed;
+  overflow: hidden;
+  top: 2vh;
+  z-index: 99;
+  cursor: default;
+}
+
+nav h1 {
+  font-family: moranga;
+  padding: 0;
+  font-size: 2.5vw;
+  line-height: 2.3vw;
+  font-weight: 600;
+  color: white;
+  width: 8vw;
+}
+nav button {
+  background-color: #42d4eb;
+  padding: 0.885vw 1.458vw;
+  height: 6vh;
+  width: 14vw;
+  border-radius: 30px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 0 7px rgb(64, 211, 239, 0.5), 0 0 14px rgb(64, 211, 239, 0.4),
+    0 0 21px rgb(64, 211, 239, 0.3);
+  transition: all 0.3s ease;
+}
+
+nav button a {
+  color: white;
+  font-family: gilroy-bold;
+  text-decoration: none;
+  font-size: 1.1vw;
+}
+
+#scrollArrow {
+  width: 100px;
+  height: 100px;
+  transition: transform 0.6s ease;
+
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.page1 {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: default;
+}
+
+.page1 h1 {
+  font-size: 4vw;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.image-div img {
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+.image-div {
+  height: 70vmin;
+  width: 70vmax;
+
+  overflow: hidden;
+}
+
+/* page 2 */
+
+.page2 {
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 10vh;
+  position: relative;
+  cursor: default;
+}
+
+.nameroll {
+  width: 100%;
+  overflow-y: hidden;
+  white-space: nowrap;
+  position: relative;
+  overflow-x: hidden;
+  margin-bottom: 13vh;
+}
+
+.nameroll h1 {
+  font-size: 8vw;
+  display: inline-block;
+  margin-right: 2vw;
+}
+
+.intro {
+  text-align: center;
+  width: 80%;
+  padding-top: 4vh;
+  padding-bottom: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro h1 {
+  word-spacing: 0.2vw;
+  letter-spacing: 0.01vw;
+  font-size: 4.4vw;
+  line-height: 1.3;
+  margin-bottom: 1vw;
+}
+
+.intro h1 span.a {
+  color: #fe7d84;
+}
+.intro h1 span,
+b {
+  color: #38cdfa;
+}
+
+.intro .sayhi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6vw;
+  width: 100%;
+
+  gap: 60px;
+}
+
+.sayhi .say {
+  background-color: #58c2f9;
+  text-decoration: none;
+  font-size: 1.7vw;
+  font-family: gilroy-bold;
+  border-radius: 50px;
+  height: 3.5vw;
+  width: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sayhi .github {
+  background-color: #f95959;
+  text-decoration: none;
+  font-size: 1.7vw;
+  font-family: gilroy-bold;
+  border-radius: 50px;
+  height: 3.5vw;
+  width: 16.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sayhi .say img {
+  height: 1.8vw;
+  width: 1.8vw;
+  margin-left: 10px;
+}
+
+.sayhi .github img {
+  height: 1.9vw;
+  width: 1.9vw;
+  margin-left: 10px;
+}
+
+/* page3  */
+.page3 {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #222222;
+  padding: 70px 100px;
+  cursor: default;
+}
+.page3 span,
+b {
+  color: #38cdfa;
+  font-family: gilroy-semibold;
+}
+
+.page3 h3 {
+  font-size: 6em;
+  font-family: gilroy-semibold;
+}
+
+.page3 h5 {
+  font-size: 2.5em;
+  font-family: gilroy-semibold;
+}
+
+.page3development h4 {
+  font-size: 2vmax;
+  font-family: gilroy-medium;
+  font-weight: 500;
+  padding: 6px 14px;
+  margin: 77px 0px 30px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 15vmax;
+  border-radius: 7px;
+  border: 2px solid white;
+}
+
+.development-elem img {
+  height: 5vmax;
+  background-color: #fff;
+  padding: 5px;
+  margin-right: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.designing h4 {
+  font-size: 2vmax;
+  font-family: gilroy-medium;
+  font-weight: 500;
+  padding: 6px 14px;
+  margin: 77px 0px 30px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 12vmax;
+  border-radius: 7px;
+  border: 2px solid white;
+}
+.designelem img {
+  height: 5vmax;
+  background-color: #fff;
+  padding: 5px;
+  margin-right: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  position: relative;
+}
+
+/* page 4 */
+
+.page4 {
+  height: 68vmax;
+  width: 100%;
+  background-color: #303030;
+  padding: 70px 100px;
+  cursor: default;
+}
+
+.page4 span,
+b {
+  color: #fe7d84;
+  font-family: gilroy-semibold;
+}
+
+.page4 h2 {
+  font-size: 3.7vmax;
+  font-family: gilroy-medium;
+  font-weight: 700;
+}
+
+.page4 h4 {
+  font-size: 1.85vmax;
+  font-weight: 500;
+  margin-bottom: 3vmax;
+  font-family: gilroy-medium;
+}
+
+.web-img {
+  height: 76vh;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 8vmax;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 4vmax;
+  padding: 2vh;
+  border: 2px solid white;
+}
+
+.web-img img {
+  height: 13vmax;
+  box-shadow: 1px 7px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+.see-all a {
+  display: block;
+  text-align: right;
+  margin-bottom: 3vmax;
+  padding: 0 1vw;
+}
+
+.see-all a img {
+  height: 4.2vmax;
+}
+
+/* page5  */
+.page5 {
+  height: 100vh;
+  width: 100%;
+  background-color: #222222;
+  position: relative;
+  padding: 4.5vh 4.2vw;
+  cursor: default;
+}
+
+.page5 h1 {
+  font-size: 4.6vmax;
+  font-family: gilroy-medium;
+  margin-top: 1vmax;
+  margin-bottom: 3.5vmax;
+}
+
+.page5 span,
+b {
+  color: #f6ba53;
+}
+
+.hover-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: black;
+  text-decoration: none;
+  transition: color 1.3s ease;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  height: 72px;
+}
+
+.hover-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.3s cubic-bezier(0.2, 1, 0.3, 1); /* fast start, slow end */
+  z-index: 0;
+}
+
+.hover-row:hover::before {
+  transform: scaleX(1);
+}
+
+.hover-row h4,
+.hover-row h5,
+.hover-row h6 {
+  z-index: 1;
+  margin: 0;
+  transition: color 0.3s ease;
+  mix-blend-mode: difference;
+  font: 800;
+  font-size: 2em;
+}
+
+.hover-row h4,
+.hover-row h6 {
+  font-family: moranga;
+}
+.hover-row h5 {
+  font-family: gilroy-bold;
+}
+
+/* page6 */
+
+.page6 {
+  height: 100vh;
+  width: 100%;
+  background-color: #303030;
+  padding: 0 2vmax;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+
+  cursor: default;
+}
+
+.page6 h1 {
+  font: 700 9vmax "Gilroy-bold";
+  font-weight: 900;
+  line-height: 1.2;
+  word-spacing: -3px;
+  letter-spacing: -5px;
+}
+
+.mail a {
+  color: #f6ba53;
+  font-family: gilroy-bold;
+  text-decoration: none;
+}
+
+.linkedin a {
+  color: #42d4eb;
+  font-family: gilroy-bold;
+  text-decoration: none;
+}
+
+.instagram a {
+  color: #f95959;
+  font-family: gilroy-bold;
+  text-decoration: none;
+}
+
+.page6 a {
+  text-decoration: none;
+  transition: text-decoration 0.3s;
+}
+
+.page6 a:hover {
+  text-decoration: line-through;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2vmax 0;
+  font-family: gilroy;
+  font-weight: 600;
+  font-size: 1.8vmax;
+}
+
+
+
+
+
+
+
+
+
+
+/* for mobile device */
+@media (max-width: 600px) {
+  nav {
+    height: 12vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.208vw 3vw;
+    position: fixed;
+    overflow: hidden;
+    top: 1vh;
+    z-index: 99;
+    cursor: default;
+  }
+
+  nav h1 {
+    font-size: 7vw;
+    line-height: 7vw;
+    text-decoration: none;
+    width: 10vw;
+  }
+  nav button {
+    background-color: #42d4eb;
+    padding: 0.9vmax 1.6vmax;
+    height: 6vh;
+    width: 32vw;
+    border-radius: 30px;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 0 7px rgb(64, 211, 239, 0.5), 0 0 14px rgb(64, 211, 239, 0.4),
+      0 0 21px rgb(64, 211, 239, 0.3);
+    transition: all 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: -11vw;
+  }
+
+  nav button a {
+    color: white;
+    font-family: gilroy-bold;
+    text-decoration: none;
+    font-size: 2vmax;
+  }
+
+  #scrollArrow {
+    height: 14vw;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-left: 4vw;
+  }
+
+  .page1 {
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: default;
+  }
+
+  .page1 h1 {
+    font-size: 4.6vmax;
+    margin-bottom: 2.5vmax;
+  }
+
+  .image-div img {
+    object-fit: cover;
+    object-position: bottom;
+    height: 100%;
+    width: 100%;
+  }
+
+  .image-div {
+    height: 35vmax;
+    width: 75vw;
+    overflow: hidden;
+    margin-bottom: 2vmax;
+  }
+
+  /* page 2 */
+
+  .page2 {
+    min-height: 100vh;
+    width: 100%;
+    padding-top: 10vh;
+    position: relative;
+    cursor: default;
+  }
+
+  .nameroll {
+    width: 100%;
+    overflow-y: hidden;
+    white-space: nowrap;
+    position: relative;
+    overflow-x: hidden;
+    margin-bottom: 1vh;
+  }
+
+  .nameroll h1 {
+    font-size: 14.5vw;
+    display: inline-block;
+    margin-right: 2vw;
+  }
+
+  .intro {
+    text-align: center;
+    width: 90%;
+    padding-top: 2vh;
+    padding-bottom: 8vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .intro h1 {
+    word-spacing: 0.6vw;
+    letter-spacing: 0.01vw;
+    font-size: 8.2vw;
+    font-weight: 100;
+    line-height: 11.8vw;
+  }
+
+  .intro h1 span.a {
+    color: #fe7d84;
+  }
+  .intro h1 span,
+  b {
+    color: #38cdfa;
+  }
+
+  .intro .sayhi {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2vmax;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sayhi .say {
+    background-color: #58c2f9;
+    text-decoration: none;
+    font-size: 4.5vw;
+    font-family: gilroy-bold;
+    border-radius: 50px;
+    height: 6vh;
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sayhi .github {
+    background-color: #f95959;
+    text-decoration: none;
+    font-size: 4.5vw;
+    font-family: gilroy-bold;
+    border-radius: 50px;
+    height: 6vh;
+    width: 73vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sayhi .say img {
+    height: 3vh;
+    width: 7vw;
+    margin: 1px;
+  }
+
+  .sayhi .github img {
+    height: 3.5vh;
+    width: 7.5vw;
+  }
+
+  /* page3  */
+  .page3 {
+    min-height: 20vh;
+    width: 100%;
+    background-color: #222;
+    padding: 5vh 5.1vw;
+    position: relative;
+  }
+  .page3 span,
+  b {
+    color: #38cdfa;
+    font-family: gilroy-semibold;
+  }
+
+  .page3 h3 {
+    font-size: 4.4vmax;
+    font-family: gilroy;
+    margin-bottom: 0vmax;
+  }
+
+  .page3 h5 {
+    font-size: 2.2vmax;
+    font-family: gilroy;
+    font-weight: 500;
+    margin-bottom: 1.4vmax;
+  }
+
+  .page3development h4 {
+    font-size: 2.1vmax;
+    border: 2px solid white;
+    display: inline-block;
+    font-family: gilroy;
+    color: #fff;
+    font-weight: 500;
+    padding: 5px 9px;
+    border-radius: 7px;
+    margin-top: 4vmax;
+    margin-bottom: 2vmax;
+  }
+
+  .development-elem img {
+    height: 5.8vmax;
+    margin-right: 5px;
+    background-color: #fff;
+    padding: 4px;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  .designing h4 {
+    font-size: 2.1vmax;
+    border: 2px solid white;
+    display: inline-block;
+    font-family: gilroy;
+    color: #fff;
+    font-weight: 500;
+    padding: 5px 9px;
+    border-radius: 7px;
+    margin-top: 4vmax;
+    margin-bottom: 2vmax;
+  }
+  .designelem img {
+    height: 6.7vmax;
+    margin-right: 5px;
+  }
+
+  /* page 4 */
+
+  .page4 {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #333;
+    position: relative;
+    padding: 4vh 4.9vw;
+  }
+
+  .page4 span,
+  b {
+    font-size: 4.4vmax;
+    font-weight: 600;
+    font-family: gilroy;
+    color: #fc626a;
+  }
+
+  .page4 h2 {
+    font-size: 4.4vmax;
+    font-weight: 600;
+    font-family: gilroy;
+  }
+
+  .page4 h4 {
+    font-size: 2.1vmax;
+    font-weight: 500;
+    margin-bottom: 3vmax;
+    font-family: gilroy;
+  }
+
+  .web-img {
+    height: 69vh;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 4.8vmax;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 4vmax;
+    padding: 2vh 1.5vh;
+    border: 2px solid white;
+  }
+
+  .web-img img {
+    height: 23vw;
+    box-shadow: 1px 7px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    margin: 0 2px;
+  }
+
+  .see-all a {
+    display: block;
+    text-align: right;
+    margin-bottom: 1vmax;
+    padding: 0 1vw;
+  }
+
+  .see-all a img {
+    height: 6vmax;
+  }
+
+  .page5 {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #222222;
+    position: relative;
+    padding: 4.5vh 4.2vw;
+    cursor: default;
+  }
+
+  .page5 h1 {
+    font-size: 4vmax;
+    font-family: gilroy-medium;
+    margin-top: 0vmax;
+    margin-bottom: 5vmax;
+  }
+
+  .page5 span,
+  b {
+    color: #f6ba53;
+  }
+
+  .hover-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    color: black;
+    text-decoration: none;
+    transition: color 1.3s ease;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    height: 60px;
+  }
+
+  .hover-row::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.3s cubic-bezier(0.2, 1, 0.3, 1); /* fast start, slow end */
+    z-index: 0;
+  }
+
+  .hover-row:hover::before {
+    transform: scaleX(1);
+  }
+
+  .hover-row h4 {
+    font-size: 2.3vmax;
+    position: relative;
+    z-index: 99;
+    transition: color ease-in 0.3s;
+    width: 18%;
+  }
+
+  .hover-row h5 {
+    font-size: 2vmax;
+    font-weight: 600;
+    font-family: gilroy;
+    width: 20%;
+
+    position: relative;
+
+    transition: color ease-in 0.3s;
+    z-index: 99;
+  }
+  .hover-row h6 {
+    font-size: 1.9vmax;
+    width: 29%;
+    text-align: right;
+
+    position: relative;
+    z-index: 99;
+    font-family: gilroy;
+    transition: color ease-in 0.4s;
+  }
+
+  .hover-row h4,
+  .hover-row h6 {
+    font-family: moranga;
+  }
+  .hover-row h5 {
+    font-family: gilroy-bold;
+  }
+
+  /* page6 */
+
+  .page6 {
+    height: 100vh;
+    width: 100%;
+    background-color: #303030;
+    padding: 0 2vmax;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+
+    cursor: default;
+  }
+
+  .page6 h1 {
+    font-size: 8.4vmax;
+  }
+
+  .mail a {
+    color: #f6ba53;
+    font-family: gilroy-bold;
+    text-decoration: none;
+  }
+
+  .linkedin a {
+    color: #42d4eb;
+    font-family: gilroy-bold;
+    text-decoration: none;
+  }
+
+  .instagram a {
+    color: #f95959;
+    font-family: gilroy-bold;
+    text-decoration: none;
+  }
+
+  .page6 a {
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+  }
+
+  .page6 a:hover {
+    text-decoration: line-through;
+  }
+
+  footer {
+    font-size: 2vmax;
+    margin-top: 10vmax;
+  }
+}
