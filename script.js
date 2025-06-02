@@ -94,19 +94,19 @@ gsap.from(".designelem img", {
 
 //reload
 
-if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
-}
+// if ("scrollRestoration" in history) {
+//   history.scrollRestoration = "manual";
+// }
 
-window.addEventListener("load", () => {
-  // Temporarily set smooth scrolling in JS
-  document.documentElement.style.scrollBehavior = "smooth";
+// window.addEventListener("load", () => {
+//   // Temporarily set smooth scrolling in JS
+//   document.documentElement.style.scrollBehavior = "smooth";
 
-  // Scroll to top smoothly
-  window.scrollTo({ top: 0, behavior: "smooth" });
+//   // Scroll to top smoothly
+//   window.scrollTo({ top: 0, behavior: "smooth" });
 
-  // Remove smooth scroll after it's done (e.g. after 500ms)
-  setTimeout(() => {
-    document.documentElement.style.scrollBehavior = "auto";
-  }, 500);
-});
+//   // Remove smooth scroll after it's done (e.g. after 500ms)
+//   setTimeout(() => {
+//     document.documentElement.style.scrollBehavior = "auto";
+//   }, 500);
+// });

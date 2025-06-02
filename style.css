@@ -357,6 +357,7 @@ b {
 }
 
 /* page5  */
+
 .page5 {
   height: 100vh;
   width: 100%;
@@ -421,14 +422,17 @@ b {
   mix-blend-mode: difference;
   font: 800;
   font-size: 2em;
+   flex: 1;
 }
 
 .hover-row h4,
 .hover-row h6 {
   font-family: moranga;
+
 }
 .hover-row h5 {
   font-family: gilroy-bold;
+  
 }
 
 /* page6 */
