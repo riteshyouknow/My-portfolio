@@ -413,26 +413,40 @@ b {
   transform: scaleX(1);
 }
 
-.hover-row h4,
-.hover-row h5,
-.hover-row h6 {
+.hover-row h4{
+
   z-index: 1;
   margin: 0;
   transition: color 0.3s ease;
   mix-blend-mode: difference;
   font: 800;
   font-size: 2em;
+  
    flex: 1;
 }
 
-.hover-row h4,
+
 .hover-row h6 {
   font-family: moranga;
-
+  z-index: 1;
+  margin: 0;
+  transition: color 0.3s ease;
+  mix-blend-mode: difference;
+  font: 800;
+  font-size: 2em;
+  flex: 1;
+  
 }
 .hover-row h5 {
   font-family: gilroy-bold;
+    z-index: 1;
+  margin: 0;
+  transition: color 0.3s ease;
+  mix-blend-mode: difference;
+  font: 800;
+  font-size: 2em;
   
+  flex: 1;
 }
 
 /* page6 */
