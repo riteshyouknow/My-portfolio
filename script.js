@@ -110,3 +110,81 @@ window.addEventListener("load", () => {
     document.documentElement.style.scrollBehavior = "auto";
   }, 500);
 });
+
+
+const chatToggle = document.getElementById("chat-toggle");
+const chatContainer = document.getElementById("chat-container");
+const closeChat = document.getElementById("close-chat");
+
+const sendBtn = document.getElementById("send-btn");
+const chatInput = document.getElementById("chat-input");
+const chatMessages = document.getElementById("chat-messages");
+
+/* OPEN CHAT */
+
+chatToggle.addEventListener("click", () => {
+    chatContainer.style.display = "flex";
+});
+
+/* CLOSE CHAT */
+
+closeChat.addEventListener("click", () => {
+    chatContainer.style.display = "none";
+});
+
+/* SEND MESSAGE */
+
+function sendMessage(){
+
+    const message = chatInput.value.trim();
+
+    if(message === "") return;
+
+    /* USER MESSAGE */
+
+    const userMessage = document.createElement("div");
+
+    userMessage.classList.add("user-message");
+
+    userMessage.innerHTML = message;
+
+    chatMessages.appendChild(userMessage);
+
+    chatInput.value = "";
+
+    /* AUTO SCROLL */
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    /* TEMP BOT REPLY */
+
+    setTimeout(() => {
+
+        const botMessage = document.createElement("div");
+
+        botMessage.classList.add("bot-message");
+
+        botMessage.innerHTML =
+        "This is a frontend demo 🤖";
+
+        chatMessages.appendChild(botMessage);
+
+        chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+
+    }, 800);
+}
+
+/* BUTTON CLICK */
+
+sendBtn.addEventListener("click", sendMessage);
+
+/* ENTER KEY */
+
+chatInput.addEventListener("keypress", (e) => {
+
+    if(e.key === "Enter"){
+        sendMessage();
+    }
+
+});
