@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,49 +12,37 @@
   </head>
   <body>
 
-<!-- AI CHAT BUTTON -->
-<div class="chat-toggle" id="chat-toggle">
-    💬
-</div>
 
-<!-- CHATBOX -->
-<div class="chat-container" id="chat-container">
+<!-- ROBOT -->
+<div id="robot-container"></div>
 
-    <div class="chat-header">
+    
+   <!-- <div class="chat-toggle" id="chat-toggle">💬</div> -->
+
+    <!-- CHATBOX -->
+    <div class="chat-container" id="chat-container">
+      <div class="chat-header">
         <div>
-            <h3>Ritesh AI</h3>
-            <span>AI Automation Assistant</span>
+          <h3>Ritesh AI</h3>
+          <span>AI Automation Assistant</span>
         </div>
 
         <button id="close-chat">✖</button>
-    </div>
+      </div>
 
-    <div class="chat-messages" id="chat-messages">
-
+      <div class="chat-messages" id="chat-messages">
         <div class="bot-message">
-            Hey 👋<br>
-            How can I help you today?
+          Hey 👋<br />
+          How can I help you today?
         </div>
+      </div>
 
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type your message..." />
+
+        <button type="button" id="send-btn">➤</button>
+      </div>
     </div>
-
-    <div class="chat-input-area">
-
-        <input
-            type="text"
-            id="chat-input"
-            placeholder="Type your message..."
-        >
-
-        <button id="send-btn">➤</button>
-
-    </div>
-
-</div>
-
-
-
-
 
     <nav>
       <h1>Ritesh <br />Singh</h1>
@@ -75,8 +63,12 @@
       </svg>
 
       <button>
-        <a href="https://www.linkedin.com/in/riteshyouknow/"  target="_blank"
-            rel="noopener noreferrer">Let’s Work </a>
+        <a
+          href="https://www.linkedin.com/in/riteshyouknow/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Let’s Work
+        </a>
       </button>
     </nav>
 
@@ -134,7 +126,11 @@
               <img src="images/hi.png" alt="" />
             </a>
 
-            <a href="https://github.com/riteshyouknow" target="_blank" rel="noopener noreferrer" class="github"
+            <a
+              href="https://github.com/riteshyouknow"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="github"
               >Watch my repo
               <img src="images/github.png" alt="" />
             </a>
@@ -178,13 +174,14 @@
           <img src="images/web4.gif" alt="" />
           <img src="images/web3.gif" alt="" />
           <img src="images/8web.gif" alt="" />
-       
-        
         </div>
 
-
         <div class="see-all">
-          <a href="https://github.com/riteshyouknow" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/riteshyouknow"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src="images/see-all.png" alt="" />
           </a>
         </div>
@@ -239,7 +236,7 @@
           >
             <h4>2025</h4>
             <h5>WizardZ Website</h5>
-            <h6> HTML, CSS, JS + GSAP</h6>
+            <h6>HTML, CSS, JS + GSAP</h6>
           </a>
 
           <a
@@ -307,15 +304,18 @@
           or
           <span class="instagram"
             ><a
-              href="https://www.instagram.com/riteshyouknow/" 
+              href="https://www.instagram.com/riteshyouknow/"
               target="_blank"
-            rel="noopener noreferrer"
+              rel="noopener noreferrer"
               >Instagram</a
             ></span
           >
           or
           <span class="linkedin"
-            ><a href="https://www.linkedin.com/in/riteshyouknow/"  target="_blank" rel="noopener noreferrer"
+            ><a
+              href="https://www.linkedin.com/in/riteshyouknow/"
+              target="_blank"
+              rel="noopener noreferrer"
               >LinkedIn.</a
             ></span
           >
@@ -338,6 +338,17 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.14/bundled/lenis.min.js"></script>
-    <script src="script.js"></script>
+    
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+
+
+
+</div>
+
+<script src="script.js"></script>
+
   </body>
 </html>

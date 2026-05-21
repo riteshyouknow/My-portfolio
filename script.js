@@ -74,7 +74,6 @@ gsap.from(".development-elem img", {
 
   stagger: {
     amount: 1,
-    
   },
 });
 gsap.from(".designelem img", {
@@ -86,7 +85,7 @@ gsap.from(".designelem img", {
     start: "top 80%",
   },
   y: 20,
-   
+
   stagger: {
     amount: 2,
   },
@@ -111,8 +110,7 @@ window.addEventListener("load", () => {
   }, 500);
 });
 
-
-const chatToggle = document.getElementById("chat-toggle");
+// const chatToggle = document.getElementById("chat-toggle");
 const chatContainer = document.getElementById("chat-container");
 const closeChat = document.getElementById("close-chat");
 
@@ -122,57 +120,63 @@ const chatMessages = document.getElementById("chat-messages");
 
 /* OPEN CHAT */
 
-chatToggle.addEventListener("click", () => {
-    chatContainer.style.display = "flex";
-});
+// // chatToggle.addEventListener("click", () => {
+//   chatContainer.style.display = "flex";
+// });
+
+/* START HIDDEN */
+
+chatContainer.style.display =
+  "none";
 
 /* CLOSE CHAT */
 
 closeChat.addEventListener("click", () => {
-    chatContainer.style.display = "none";
+  chatContainer.style.display = "none";
 });
 
 /* SEND MESSAGE */
 
-function sendMessage(){
+async function sendMessage() {
+  const message = chatInput.value.trim();
 
-    const message = chatInput.value.trim();
+  if (message === "") return;
 
-    if(message === "") return;
+  /* USER MESSAGE */
 
-    /* USER MESSAGE */
+  const userMessage = document.createElement("div");
 
-    const userMessage = document.createElement("div");
+  userMessage.classList.add("user-message");
 
-    userMessage.classList.add("user-message");
+  userMessage.innerHTML = message;
 
-    userMessage.innerHTML = message;
+  chatMessages.appendChild(userMessage);
 
-    chatMessages.appendChild(userMessage);
+  chatInput.value = "";
 
-    chatInput.value = "";
+  /* AUTO SCROLL */
 
-    /* AUTO SCROLL */
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+  /* TEMP BOT REPLY */
 
-    /* TEMP BOT REPLY */
+  const botMessage = document.createElement("div");
 
-    setTimeout(() => {
+  botMessage.classList.add("bot-message");
 
-        const botMessage = document.createElement("div");
+  botMessage.innerHTML = "Typing...";
 
-        botMessage.classList.add("bot-message");
+  chatMessages.appendChild(botMessage);
 
-        botMessage.innerHTML =
-        "This is a frontend demo 🤖";
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        chatMessages.appendChild(botMessage);
+  /* AI REPLY */
 
-        chatMessages.scrollTop =
-        chatMessages.scrollHeight;
+  const aiReply = await getBotReply(message);
 
-    }, 800);
+  botMessage.innerHTML = aiReply;
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 /* BUTTON CLICK */
@@ -184,7 +188,335 @@ sendBtn.addEventListener("click", sendMessage);
 chatInput.addEventListener("keypress", (e) => {
 
     if(e.key === "Enter"){
+
+        e.preventDefault();
+
         sendMessage();
     }
 
 });
+
+async function getBotReply(message) {
+  const response = await fetch("http://127.0.0.1:8000/chat", {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({
+      message: message,
+    }),
+  });
+
+  const data = await response.json();
+
+  return data.reply;
+}
+
+
+
+
+
+
+
+// ================= ROBOT =================
+
+const robotContainer =
+  document.getElementById(
+    "robot-container"
+  );
+
+const scene =
+  new THREE.Scene();
+
+const camera =
+  new THREE.PerspectiveCamera(
+    45,
+    1,
+    0.1,
+    1000
+  );
+
+camera.position.z = 5;
+
+const renderer =
+  new THREE.WebGLRenderer({
+    alpha: true,
+    antialias: true,
+  });
+
+renderer.setSize(320, 320);
+
+renderer.setPixelRatio(
+  window.devicePixelRatio
+);
+
+robotContainer.appendChild(
+  renderer.domElement
+);
+
+// LIGHTS
+
+const ambientLight =
+  new THREE.AmbientLight(
+    0xffffff,
+    2
+  );
+
+scene.add(ambientLight);
+
+const directionalLight =
+  new THREE.DirectionalLight(
+    0xffffff,
+    2
+  );
+
+directionalLight.position.set(
+  3,
+  3,
+  3
+);
+
+scene.add(directionalLight);
+
+// MODEL
+
+let mixer;
+let action;
+let isAnimating = false;
+
+const loader =
+  new THREE.GLTFLoader();
+
+loader.load(
+
+  "./models/Waving.glb",
+
+  function (gltf) {
+
+    const model =
+      gltf.scene;
+
+    model.scale.set(
+      0.5,
+      0.5,
+      0.5
+    );
+
+    model.position.set(
+      0,
+      -1.5,
+      0
+    );
+
+    scene.add(model);
+
+    mixer =
+      new THREE.AnimationMixer(
+        model
+      );
+
+    action =
+      mixer.clipAction(
+        gltf.animations[0]
+      );
+
+    // PLAY ONLY ONCE
+
+    action.setLoop(
+      THREE.LoopOnce
+    );
+
+    action.clampWhenFinished =
+      true;
+
+    // PAGE LOAD WAVE
+
+    playWaveAnimation();
+  }
+);
+
+// PLAY FUNCTION
+
+function playWaveAnimation() {
+
+  // IF ALREADY PLAYING
+  if (
+    !action ||
+    isAnimating
+  ) return;
+
+  isAnimating = true;
+
+  action.reset();
+
+  action.play();
+
+  // ANIMATION END
+
+  mixer.addEventListener(
+    "finished",
+    () => {
+
+      isAnimating = false;
+    },
+
+    { once: true }
+  );
+}
+
+// CLOCK
+
+const clock =
+  new THREE.Clock();
+
+// ANIMATE
+
+function animate() {
+
+  requestAnimationFrame(
+    animate
+  );
+
+  if (mixer) {
+
+    mixer.update(
+      clock.getDelta()
+    );
+  }
+
+  renderer.render(
+    scene,
+    camera
+  );
+}
+
+animate();
+
+// ================= CHAT OPEN =================
+
+robotContainer.addEventListener(
+  "click",
+  () => {
+
+    // HIDE ROBOT
+
+    robotContainer.style.display =
+      "none";
+
+    // SHOW CHAT
+
+    chatContainer.style.display =
+      "flex";
+  }
+);
+
+// ================= DRAG =================
+
+let isDragging = false;
+
+let offsetX = 0;
+let offsetY = 0;
+
+robotContainer.addEventListener(
+  "mousedown",
+  (e) => {
+
+    isDragging = true;
+
+    offsetX =
+      e.clientX -
+      robotContainer.offsetLeft;
+
+    offsetY =
+      e.clientY -
+      robotContainer.offsetTop;
+
+    robotContainer.style.cursor =
+      "grabbing";
+  }
+);
+
+document.addEventListener(
+  "mousemove",
+  (e) => {
+
+    if (!isDragging) return;
+
+    let x =
+      e.clientX - offsetX;
+
+    let y =
+      e.clientY - offsetY;
+
+    // LIMITS
+
+    const maxX =
+      window.innerWidth - 320;
+
+    const maxY =
+      window.innerHeight - 320;
+
+    x = Math.max(
+      0,
+      Math.min(x, maxX)
+    );
+
+    y = Math.max(
+      0,
+      Math.min(y, maxY)
+    );
+
+    robotContainer.style.left =
+      `${x}px`;
+
+    robotContainer.style.top =
+      `${y}px`;
+
+    robotContainer.style.right =
+      "auto";
+
+    robotContainer.style.bottom =
+      "auto";
+  }
+);
+
+document.addEventListener(
+  "mouseup",
+  () => {
+
+    isDragging = false;
+
+    robotContainer.style.cursor =
+      "grab";
+  }
+);
+
+// HOVER WAVE
+
+robotContainer.addEventListener(
+  "mouseenter",
+  () => {
+
+    playWaveAnimation();
+  }
+);
+
+// ================= CLOSE CHAT =================
+
+closeChat.addEventListener(
+  "click",
+  () => {
+
+    // HIDE CHAT
+
+    chatContainer.style.display =
+      "none";
+
+    // SHOW ROBOT
+
+    robotContainer.style.display =
+      "block";
+  }
+);
