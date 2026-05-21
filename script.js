@@ -1,30 +1,64 @@
+// ============================
+// GSAP ANIMATIONS
+// ============================
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Name Roll Animation
 gsap.to(".nameroll h1", {
-  transform: "translateX(-110%)",
+  x: "-110%",
   scrollTrigger: {
     trigger: ".page2",
-    scroller: "body",
     start: "top 90%",
     end: "top -150%",
     scrub: 1,
   },
 });
 
+// Intro Text Animation
 gsap.from(".intro h1", {
   y: 40,
   opacity: 0,
   stagger: 0.14,
-
   scrollTrigger: {
     trigger: ".intro h1",
-    scroller: "body",
     start: "top 80%",
   },
 });
 
-gsap.registerPlugin(ScrollTrigger);
+// Skills Icons Animation
+gsap.from(".development-elem img", {
+  opacity: 0,
+  y: 20,
+  stagger: {
+    amount: 1,
+  },
+  scrollTrigger: {
+    trigger: ".development-elem",
+    start: "top 80%",
+  },
+});
+
+// Design Icons Animation
+gsap.from(".designelem img", {
+  opacity: 0,
+  y: 20,
+  stagger: {
+    amount: 1,
+  },
+  scrollTrigger: {
+    trigger: ".designelem",
+    start: "top 80%",
+  },
+});
+
+
+
+// ============================
+// LENIS SMOOTH SCROLL
+// ============================
 
 const lenis = new Lenis({
-  duration: 0,
   smooth: true,
 });
 
@@ -35,116 +69,116 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-// Tell ScrollTrigger to update on Lenis scroll
 lenis.on("scroll", ScrollTrigger.update);
 
-// svg throw DOM propertise
+
+
+// ============================
+// SCROLL ARROW
+// ============================
 
 const arrow = document.getElementById("scrollArrow");
 
+// Rotate Arrow on Scroll
 window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
 
-  if (scrollY > 100) {
+  if (window.scrollY > 100) {
     arrow.style.transform = "rotate(90deg)";
   } else {
     arrow.style.transform = "rotate(0deg)";
   }
+
 });
 
-// Scroll smoothly to top on click
+// Scroll To Top
 arrow.addEventListener("click", () => {
+
   window.scrollTo({
     top: 0,
     behavior: "smooth",
   });
+
 });
 
-//page 3 js
 
-gsap.from(".development-elem img", {
-  opacity: 0,
-  scrollTrigger: {
-    trigger: ".development-elem img",
-    scroller: "body",
-    //markers:true,
-    start: "top 80%",
-  },
-  y: 20,
 
-  stagger: {
-    amount: 1,
-  },
-});
-gsap.from(".designelem img", {
-  opacity: 0,
-  scrollTrigger: {
-    trigger: ".designelem img",
-    scroller: "body",
-    //markers:true,
-    start: "top 80%",
-  },
-  y: 20,
-
-  stagger: {
-    amount: 2,
-  },
-});
-
-//reload
+// ============================
+// PAGE RELOAD TO TOP
+// ============================
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
 window.addEventListener("load", () => {
-  // Temporarily set smooth scrolling in JS
-  document.documentElement.style.scrollBehavior = "smooth";
 
-  // Scroll to top smoothly
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 
-  // Remove smooth scroll after it's done (e.g. after 500ms)
-  setTimeout(() => {
-    document.documentElement.style.scrollBehavior = "auto";
-  }, 500);
 });
 
-// const chatToggle = document.getElementById("chat-toggle");
-const chatContainer = document.getElementById("chat-container");
-const closeChat = document.getElementById("close-chat");
 
-const sendBtn = document.getElementById("send-btn");
-const chatInput = document.getElementById("chat-input");
-const chatMessages = document.getElementById("chat-messages");
 
-/* OPEN CHAT */
+// ============================
+// CHAT SYSTEM
+// ============================
 
-// // chatToggle.addEventListener("click", () => {
-//   chatContainer.style.display = "flex";
-// });
+const chatContainer =
+  document.getElementById("chat-container");
 
-/* START HIDDEN */
+const closeChat =
+  document.getElementById("close-chat");
 
-chatContainer.style.display =
-  "none";
+const sendBtn =
+  document.getElementById("send-btn");
 
-/* CLOSE CHAT */
+const chatInput =
+  document.getElementById("chat-input");
 
+const chatMessages =
+  document.getElementById("chat-messages");
+
+
+// Prevent Website Scroll While Chat Scrolls
+chatMessages.addEventListener(
+  "wheel",
+  (e) => {
+    e.stopPropagation();
+  },
+  { passive: true }
+);
+
+
+// Hide Chat Initially
+chatContainer.style.display = "none";
+
+
+// Close Chat
 closeChat.addEventListener("click", () => {
+
   chatContainer.style.display = "none";
+
+  robotContainer.style.display = "block";
+
 });
 
-/* SEND MESSAGE */
+
+
+// ============================
+// SEND MESSAGE FUNCTION
+// ============================
 
 async function sendMessage() {
+
   const message = chatInput.value.trim();
 
   if (message === "") return;
 
-  /* USER MESSAGE */
-
-  const userMessage = document.createElement("div");
+  // User Message
+  const userMessage =
+    document.createElement("div");
 
   userMessage.classList.add("user-message");
 
@@ -154,78 +188,127 @@ async function sendMessage() {
 
   chatInput.value = "";
 
-  /* AUTO SCROLL */
+  scrollChat();
 
-  chatMessages.scrollTop = chatMessages.scrollHeight;
 
-  /* TEMP BOT REPLY */
-
-  const botMessage = document.createElement("div");
+  // Typing Loader
+  const botMessage =
+    document.createElement("div");
 
   botMessage.classList.add("bot-message");
 
-  botMessage.innerHTML = "Typing...";
+  botMessage.innerHTML = `
+  
+    <div class="typing">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  `;
 
   chatMessages.appendChild(botMessage);
 
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  scrollChat();
 
-  /* AI REPLY */
 
-  const aiReply = await getBotReply(message);
+  // AI Reply
+  const aiReply =
+    await getBotReply(message);
 
   botMessage.innerHTML = aiReply;
 
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  scrollChat();
+
 }
 
-/* BUTTON CLICK */
 
-sendBtn.addEventListener("click", sendMessage);
 
-/* ENTER KEY */
+// ============================
+// AUTO SCROLL CHAT
+// ============================
 
-chatInput.addEventListener("keypress", (e) => {
+function scrollChat() {
 
-    if(e.key === "Enter"){
+  chatMessages.scrollTop =
+    chatMessages.scrollHeight;
 
-        e.preventDefault();
+}
 
-        sendMessage();
+
+
+// ============================
+// BUTTON EVENTS
+// ============================
+
+// Send Button
+sendBtn.addEventListener(
+  "click",
+  sendMessage
+);
+
+
+// Enter Key Send
+chatInput.addEventListener(
+  "keypress",
+  (e) => {
+
+    if (e.key === "Enter") {
+
+      e.preventDefault();
+
+      sendMessage();
+
     }
 
-});
+  }
+);
+
+
+
+// ============================
+// BACKEND API CALL
+// ============================
 
 async function getBotReply(message) {
-  const response = await fetch("http://127.0.0.1:8000/chat", {
-    method: "POST",
 
-    headers: {
-      "Content-Type": "application/json",
-    },
+  try {
 
-    body: JSON.stringify({
-      message: message,
-    }),
-  });
+    const response = await fetch(
+      "http://127.0.0.1:8000/chat",
+      {
+        method: "POST",
 
-  const data = await response.json();
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-  return data.reply;
+        body: JSON.stringify({
+          message: message,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    return data.reply;
+
+  } catch (error) {
+
+    return "Server not connected ⚠️";
+
+  }
+
 }
 
 
 
-
-
-
-
-// ================= ROBOT =================
+// ============================
+// THREE JS ROBOT
+// ============================
 
 const robotContainer =
-  document.getElementById(
-    "robot-container"
-  );
+  document.getElementById("robot-container");
 
 const scene =
   new THREE.Scene();
@@ -240,6 +323,8 @@ const camera =
 
 camera.position.z = 5;
 
+
+// Renderer
 const renderer =
   new THREE.WebGLRenderer({
     alpha: true,
@@ -256,7 +341,11 @@ robotContainer.appendChild(
   renderer.domElement
 );
 
+
+
+// ============================
 // LIGHTS
+// ============================
 
 const ambientLight =
   new THREE.AmbientLight(
@@ -280,7 +369,11 @@ directionalLight.position.set(
 
 scene.add(directionalLight);
 
-// MODEL
+
+
+// ============================
+// LOAD MODEL
+// ============================
 
 let mixer;
 let action;
@@ -290,62 +383,49 @@ const loader =
   new THREE.GLTFLoader();
 
 loader.load(
-
   "./models/Waving.glb",
 
   function (gltf) {
 
-    const model =
-      gltf.scene;
+    const model = gltf.scene;
 
-    model.scale.set(
-      0.5,
-      0.5,
-      0.5
-    );
+    model.scale.set(0.5, 0.5, 0.5);
 
-    model.position.set(
-      0,
-      -1.5,
-      0
-    );
+    model.position.set(0, -1.5, 0);
 
     scene.add(model);
 
+
+    // Animation
     mixer =
-      new THREE.AnimationMixer(
-        model
-      );
+      new THREE.AnimationMixer(model);
 
     action =
       mixer.clipAction(
         gltf.animations[0]
       );
 
-    // PLAY ONLY ONCE
-
     action.setLoop(
       THREE.LoopOnce
     );
 
-    action.clampWhenFinished =
-      true;
-
-    // PAGE LOAD WAVE
+    action.clampWhenFinished = true;
 
     playWaveAnimation();
+
   }
 );
 
-// PLAY FUNCTION
+
+
+// ============================
+// PLAY ANIMATION
+// ============================
 
 function playWaveAnimation() {
 
-  // IF ALREADY PLAYING
-  if (
-    !action ||
-    isAnimating
-  ) return;
+  if (!action || isAnimating)
+    return;
 
   isAnimating = true;
 
@@ -353,72 +433,80 @@ function playWaveAnimation() {
 
   action.play();
 
-  // ANIMATION END
-
   mixer.addEventListener(
     "finished",
     () => {
 
       isAnimating = false;
-    },
 
+    },
     { once: true }
   );
+
 }
 
-// CLOCK
+
+
+// ============================
+// ANIMATION LOOP
+// ============================
 
 const clock =
   new THREE.Clock();
 
-// ANIMATE
-
 function animate() {
 
-  requestAnimationFrame(
-    animate
-  );
+  requestAnimationFrame(animate);
 
   if (mixer) {
 
     mixer.update(
       clock.getDelta()
     );
+
   }
 
   renderer.render(
     scene,
     camera
   );
+
 }
 
 animate();
 
-// ================= CHAT OPEN =================
+
+
+// ============================
+// OPEN CHAT
+// ============================
 
 robotContainer.addEventListener(
   "click",
   () => {
 
-    // HIDE ROBOT
-
     robotContainer.style.display =
       "none";
 
-    // SHOW CHAT
-
     chatContainer.style.display =
       "flex";
+
   }
 );
 
-// ================= DRAG =================
+
+
+// ============================
+// ROBOT DRAG SYSTEM
+// ============================
 
 let isDragging = false;
 
 let offsetX = 0;
 let offsetY = 0;
 
+
+// Mouse Down
 robotContainer.addEventListener(
   "mousedown",
   (e) => {
@@ -435,9 +523,12 @@ robotContainer.addEventListener(
 
     robotContainer.style.cursor =
       "grabbing";
+
   }
 );
 
+
+// Mouse Move
 document.addEventListener(
   "mousemove",
   (e) => {
@@ -450,8 +541,7 @@ document.addEventListener(
     let y =
       e.clientY - offsetY;
 
-    // LIMITS
-
+    // Screen Limits
     const maxX =
       window.innerWidth - 320;
 
@@ -479,9 +569,12 @@ document.addEventListener(
 
     robotContainer.style.bottom =
       "auto";
+
   }
 );
 
+
+// Mouse Up
 document.addEventListener(
   "mouseup",
   () => {
@@ -490,33 +583,49 @@ document.addEventListener(
 
     robotContainer.style.cursor =
       "grab";
+
   }
 );
 
-// HOVER WAVE
+
+
+// ============================
+// HOVER ANIMATION
+// ============================
 
 robotContainer.addEventListener(
   "mouseenter",
   () => {
 
     playWaveAnimation();
+
   }
 );
 
-// ================= CLOSE CHAT =================
 
-closeChat.addEventListener(
-  "click",
-  () => {
+// ============================
+// QUICK BUTTONS WORKING
+// ============================
 
-    // HIDE CHAT
+const quickButtons =
+  document.querySelectorAll(
+    ".quick-buttons button"
+  );
 
-    chatContainer.style.display =
-      "none";
+quickButtons.forEach((button) => {
 
-    // SHOW ROBOT
+  button.addEventListener(
+    "click",
+    () => {
 
-    robotContainer.style.display =
-      "block";
-  }
-);
+      // Button text input me daalo
+      chatInput.value =
+        button.innerText;
+
+      // Auto send
+      sendMessage();
+
+    }
+  );
+
+});
