@@ -389,9 +389,9 @@ loader.load(
 
     const model = gltf.scene;
 
-    model.scale.set(0.5, 0.5, 0.5);
+    model.scale.set(0.4, 0.4, 0.4);
 
-    model.position.set(0, -1.5, 0);
+    model.position.set(0.3, -1.5, .5);
 
     scene.add(model);
 
